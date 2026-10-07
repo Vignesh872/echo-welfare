@@ -12,7 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ExplorerRouteImport } from './routes/explorer'
+import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as ManagementRouteImport } from './routes/management'
+import { Route as PresentRouteImport } from './routes/present'
+import { Route as PriorityLabRouteImport } from './routes/priority-lab'
+import { Route as ReportRouteImport } from './routes/report'
+import { Route as SurveyRouteImport } from './routes/survey'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,9 +34,34 @@ const ExplorerRoute = ExplorerRouteImport.update({
   path: '/explorer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ManagementRoute = ManagementRouteImport.update({
   id: '/management',
   path: '/management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PresentRoute = PresentRouteImport.update({
+  id: '/present',
+  path: '/present',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PriorityLabRoute = PriorityLabRouteImport.update({
+  id: '/priority-lab',
+  path: '/priority-lab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportRoute = ReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SurveyRoute = SurveyRouteImport.update({
+  id: '/survey',
+  path: '/survey',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -39,34 +69,82 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/explorer': typeof ExplorerRoute
+  '/insights': typeof InsightsRoute
   '/management': typeof ManagementRoute
+  '/present': typeof PresentRoute
+  '/priority-lab': typeof PriorityLabRoute
+  '/report': typeof ReportRoute
+  '/survey': typeof SurveyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/explorer': typeof ExplorerRoute
+  '/insights': typeof InsightsRoute
   '/management': typeof ManagementRoute
+  '/present': typeof PresentRoute
+  '/priority-lab': typeof PriorityLabRoute
+  '/report': typeof ReportRoute
+  '/survey': typeof SurveyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/explorer': typeof ExplorerRoute
+  '/insights': typeof InsightsRoute
   '/management': typeof ManagementRoute
+  '/present': typeof PresentRoute
+  '/priority-lab': typeof PriorityLabRoute
+  '/report': typeof ReportRoute
+  '/survey': typeof SurveyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/explorer' | '/management'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/explorer'
+    | '/insights'
+    | '/management'
+    | '/present'
+    | '/priority-lab'
+    | '/report'
+    | '/survey'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/explorer' | '/management'
-  id: '__root__' | '/' | '/about' | '/explorer' | '/management'
+  to:
+    | '/'
+    | '/about'
+    | '/explorer'
+    | '/insights'
+    | '/management'
+    | '/present'
+    | '/priority-lab'
+    | '/report'
+    | '/survey'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/explorer'
+    | '/insights'
+    | '/management'
+    | '/present'
+    | '/priority-lab'
+    | '/report'
+    | '/survey'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ExplorerRoute: typeof ExplorerRoute
+  InsightsRoute: typeof InsightsRoute
   ManagementRoute: typeof ManagementRoute
+  PresentRoute: typeof PresentRoute
+  PriorityLabRoute: typeof PriorityLabRoute
+  ReportRoute: typeof ReportRoute
+  SurveyRoute: typeof SurveyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,11 +170,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExplorerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/management': {
       id: '/management'
       path: '/management'
       fullPath: '/management'
       preLoaderRoute: typeof ManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/present': {
+      id: '/present'
+      path: '/present'
+      fullPath: '/present'
+      preLoaderRoute: typeof PresentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/priority-lab': {
+      id: '/priority-lab'
+      path: '/priority-lab'
+      fullPath: '/priority-lab'
+      preLoaderRoute: typeof PriorityLabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/report': {
+      id: '/report'
+      path: '/report'
+      fullPath: '/report'
+      preLoaderRoute: typeof ReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/survey': {
+      id: '/survey'
+      path: '/survey'
+      fullPath: '/survey'
+      preLoaderRoute: typeof SurveyRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -106,7 +219,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ExplorerRoute: ExplorerRoute,
+  InsightsRoute: InsightsRoute,
   ManagementRoute: ManagementRoute,
+  PresentRoute: PresentRoute,
+  PriorityLabRoute: PriorityLabRoute,
+  ReportRoute: ReportRoute,
+  SurveyRoute: SurveyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

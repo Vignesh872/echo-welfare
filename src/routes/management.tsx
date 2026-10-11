@@ -26,7 +26,7 @@ const MASLOW = [
 
 function Management() {
   const [active, setActive] = useState(0);
-  const f = MGMT_FUNCTIONS[active];
+  const f = MGMT_FUNCTIONS[active]!;
   const onKey = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); setActive((a) => (a + 1) % 5); }
     if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); setActive((a) => (a + 4) % 5); }

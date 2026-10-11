@@ -139,7 +139,7 @@ export function makeDemoData(): SurveyResponse[] {
       const v = Math.round(bias[d.id] + (rand() - 0.5) * 2.6);
       answers[d.id] = Math.min(5, Math.max(1, v)) as Rating;
     }
-    return { id: `demo-${i}`, createdAt: "2026-01-01T00:00:00.000Z", department: depts[Math.floor(rand() * depts.length)], answers };
+    return { id: `demo-${i}`, createdAt: "2026-01-01T00:00:00.000Z", department: depts[Math.floor(rand() * depts.length)]!, answers };
   });
 }
 
@@ -160,7 +160,7 @@ export function computeStats(rows: SurveyResponse[]): Stats {
     for (const r of rows) {
       const v = r.answers[d.id];
       if (v === "na" || v == null) { na++; continue; }
-      s += v; n++; sum += v; valid++; dist[v - 1]++; if (v >= 4) fav++;
+      s += v; n++; sum += v; valid++; dist[v - 1]!++; if (v >= 4) fav++;
     }
     return { id: d.id, name: d.short, average: n ? s / n : null, n, na };
   });
@@ -170,7 +170,7 @@ export function computeStats(rows: SurveyResponse[]): Stats {
     favourablePct: valid ? (fav / valid) * 100 : null,
     validRatings: valid,
     byDimension,
-    distribution: SCALE.map((s, i) => ({ rating: s.value, label: s.label, count: dist[i] })),
+    distribution: SCALE.map((s, i) => ({ rating: s.value, label: s.label, count: dist[i]! })),
   };
 }
 

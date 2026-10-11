@@ -7,7 +7,7 @@ export function Reveal({ children, className, as: Tag = "div" }: { children: Rea
     const el = ref.current;
     if (!el) return;
     if (!("IntersectionObserver" in window)) { el.classList.add("is-visible"); return; }
-    const io = new IntersectionObserver(([e]) => {
+    const io = new IntersectionObserver(([e]) => { if (!e) return;
       if (e.isIntersecting) { el.classList.add("is-visible"); io.disconnect(); }
     }, { threshold: 0.12 });
     io.observe(el);

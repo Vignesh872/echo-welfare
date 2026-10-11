@@ -21,7 +21,7 @@ const SLIDES: { title: string; body: ReactNode }[] = [
   { title: "A Study on Employee Welfare Measures", body: <><p className="text-3xl text-gold">Better Welfare. Better Workplaces.</p><p className="mt-6 text-2xl opacity-80">Principles of Management · Welfare360</p></> },
   { title: "Objectives", body: <ol className="list-decimal space-y-3 pl-8 text-2xl"><li>Understand welfare concepts and types</li><li>Identify common welfare measures</li><li>Assess satisfaction across eight dimensions</li><li>Relate welfare to management functions</li><li>Suggest improvements</li></ol> },
   { title: "Eight welfare dimensions", body: <div className="grid grid-cols-2 gap-4 md:grid-cols-4">{DIMENSIONS.map((d) => <div key={d.id} className="rounded-xl bg-primary-foreground/10 p-5"><d.icon className="h-8 w-8 text-gold" aria-hidden /><p className="mt-3 text-xl">{d.name}</p></div>)}</div> },
-  { title: "Management connections", body: <ul className="space-y-4 text-2xl">{MGMT_FUNCTIONS.map((m) => <li key={m.id}><span className="text-gold">{m.name}</span> — {m.explanation.split(";")[0].split(" — ")[0]}</li>)}</ul> },
+  { title: "Management connections", body: <ul className="space-y-4 text-2xl">{MGMT_FUNCTIONS.map((m) => <li key={m.id}><span className="text-gold">{m.name}</span> — {m.explanation.split(";")[0]!.split(" — ")[0]}</li>)}</ul> },
   { title: "Methodology", body: <ul className="space-y-3 text-2xl"><li>Descriptive research design</li><li>Structured questionnaire, five-point scale</li><li>Convenience sampling (details to be added)</li><li>Mean scores and percentages; N/A excluded</li></ul> },
   { title: "Illustrative insights", body: <><p className="mb-6 inline-block rounded bg-gold px-3 py-1 text-lg font-semibold text-emerald-deep">Fictional demonstration data</p><div className="space-y-3">{demo.byDimension.map((d) => <div key={d.id} className="flex items-center gap-4 text-xl"><span className="w-36 shrink-0">{d.name}</span><div className="h-5 flex-1 rounded bg-primary-foreground/15"><div className="h-full rounded bg-gold" style={{ width: `${((d.average ?? 0) / 5) * 100}%` }} /></div><span className="w-12 text-right">{d.average?.toFixed(1)}</span></div>)}</div></> },
   { title: "Recommendations", body: <ul className="space-y-3 text-2xl"><li>Survey employees regularly</li><li>Form a representative welfare committee</li><li>Prioritise transparently</li><li>Communicate schemes clearly</li><li>Track one metric per dimension</li></ul> },
@@ -41,7 +41,7 @@ function Present() {
     window.addEventListener("keydown", k);
     return () => window.removeEventListener("keydown", k);
   }, [go]);
-  const s = SLIDES[i];
+  const s = SLIDES[i]!;
   return (
     <div className="flex min-h-screen flex-col bg-emerald-gradient text-primary-foreground">
       <div className="flex items-center justify-between px-6 py-4">
